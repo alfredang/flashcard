@@ -69,10 +69,11 @@ function renderCurrentCard() {
 
   const card = cards[currentIndex];
   frontText.textContent = card.question;
-  backText.innerHTML = escapeHtml(card.answer)
+  const safeAnswer = escapeHtml(card.answer);
+  backText.innerHTML = safeAnswer
+    .replace(/\n/g, "<br>")
     .replace(/\\n/g, "<br>")
-    .replace(/&lt;br&gt;/gi, "<br>")
-    .replace(/\n/g, "<br>");
+    .replace(/&lt;br&gt;/gi, "<br>");
   cardCounter.textContent = `${currentIndex + 1} of ${cards.length}`;
   prevBtn.disabled = currentIndex === 0;
   nextBtn.disabled = currentIndex === cards.length - 1;
