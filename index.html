@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flash Cards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Flash Cards</h1>
+    <div class="header-actions">
+      <button id="shuffleBtn" class="btn btn-secondary" title="Shuffle cards">&#x1f500; Shuffle</button>
+      <button id="importBtn" class="btn btn-secondary" title="Import JSON">&#x1f4e5; Import</button>
+      <button id="exportBtn" class="btn btn-secondary" title="Export JSON">&#x1f4e4; Export</button>
+      <button id="themeToggle" class="btn btn-icon" title="Toggle dark mode">&#x1f319;</button>
+      <input type="file" id="importFile" accept=".json" hidden>
+    </div>
+  </header>
+
+  <main>
+    <aside id="sidebar">
+      <h2>Card List</h2>
+      <div id="addCardForm">
+        <input type="text" id="questionInput" placeholder="Question" autocomplete="off">
+        <input type="text" id="answerInput" placeholder="Answer" autocomplete="off">
+        <button id="addCardBtn" class="btn btn-primary">+ Add Card</button>
+      </div>
+      <ul id="cardList"></ul>
+    </aside>
+
+    <section id="presentation">
+      <div class="card-container" id="cardContainer">
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner" id="flashcardInner">
+            <div class="flashcard-front">
+              <span class="card-label">Question</span>
+              <p id="frontText">Add a card to get started</p>
+            </div>
+            <div class="flashcard-back">
+              <span class="card-label">Answer</span>
+              <p id="backText"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-controls">
+        <button id="prevBtn" class="btn btn-nav">&larr; Previous</button>
+        <span id="cardCounter">0 of 0</span>
+        <button id="nextBtn" class="btn btn-nav">Next &rarr;</button>
+      </div>
+      <p class="hint">Click card to flip &middot; Arrow keys to navigate &middot; Space to flip</p>
+    </section>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3>Edit Card</h3>
+      <input type="text" id="editQuestion" placeholder="Question">
+      <input type="text" id="editAnswer" placeholder="Answer">
+      <div class="modal-actions">
+        <button id="editSaveBtn" class="btn btn-primary">Save</button>
+        <button id="editCancelBtn" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
