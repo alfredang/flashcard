@@ -1,3 +1,10 @@
+// ── Helpers ──
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 // ── State ──
 let cards = [];
 let currentIndex = 0;
@@ -62,7 +69,7 @@ function renderCurrentCard() {
 
   const card = cards[currentIndex];
   frontText.textContent = card.question;
-  backText.textContent = card.answer;
+  backText.innerHTML = escapeHtml(card.answer).replace(/\n/g, "<br>");
   cardCounter.textContent = `${currentIndex + 1} of ${cards.length}`;
   prevBtn.disabled = currentIndex === 0;
   nextBtn.disabled = currentIndex === cards.length - 1;
@@ -278,17 +285,17 @@ themeToggle.addEventListener("click", toggleTheme);
 editSaveBtn.addEventListener("click", saveEdit);
 editCancelBtn.addEventListener("click", closeEditModal);
 
-// Submit on Enter in add form
+// Submit on Enter in add form (Ctrl+Enter for answer textarea)
 answerInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addCard();
+  if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) addCard();
 });
 questionInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") answerInput.focus();
 });
 
-// Submit on Enter in edit modal
+// Submit on Ctrl+Enter in edit modal
 editAnswer.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") saveEdit();
+  if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) saveEdit();
 });
 
 // Close modal on overlay click

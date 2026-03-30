@@ -246,7 +246,9 @@ main {
 }
 
 #addCardForm input,
-.modal input {
+#addCardForm textarea,
+.modal input,
+.modal textarea {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -257,8 +259,16 @@ main {
   outline: none;
 }
 
+#addCardForm textarea,
+.modal textarea {
+  resize: vertical;
+  font-family: var(--font);
+}
+
 #addCardForm input:focus,
-.modal input:focus {
+#addCardForm textarea:focus,
+.modal input:focus,
+.modal textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }

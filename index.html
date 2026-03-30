@@ -23,7 +23,7 @@
       <h2>Card List</h2>
       <div id="addCardForm">
         <input type="text" id="questionInput" placeholder="Question" autocomplete="off">
-        <input type="text" id="answerInput" placeholder="Answer" autocomplete="off">
+        <textarea id="answerInput" placeholder="Answer (use Enter for line breaks)" rows="2" autocomplete="off"></textarea>
         <button id="addCardBtn" class="btn btn-primary">+ Add Card</button>
       </div>
       <ul id="cardList"></ul>
@@ -62,7 +62,7 @@
     <div class="modal">
       <h3>Edit Card</h3>
       <input type="text" id="editQuestion" placeholder="Question">
-      <input type="text" id="editAnswer" placeholder="Answer">
+      <textarea id="editAnswer" placeholder="Answer (use Enter for line breaks)" rows="3"></textarea>
       <div class="modal-actions">
         <button id="editSaveBtn" class="btn btn-primary">Save</button>
         <button id="editCancelBtn" class="btn btn-secondary">Cancel</button>
