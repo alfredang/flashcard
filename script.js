@@ -245,10 +245,9 @@ function importCards(file) {
 // ── Theme ──
 function loadTheme() {
   const saved = localStorage.getItem("flashcard-theme");
-  if (saved) {
-    document.documentElement.dataset.theme = saved;
-    updateThemeIcon(saved);
-  }
+  const theme = saved || "dark";
+  document.documentElement.dataset.theme = theme;
+  updateThemeIcon(theme);
 }
 
 function toggleTheme() {
