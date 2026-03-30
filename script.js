@@ -1,8 +1,18 @@
 // ── Helpers ──
 function escapeHtml(str) {
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderWithBreaks(str) {
+  // Normalize all line break markers to \n, then split and escape each line
+  const normalized = str
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/\\n/g, "\n");
+  return normalized.split("\n").map(escapeHtml).join("<br>");
 }
 
 // ── State ──
@@ -69,11 +79,7 @@ function renderCurrentCard() {
 
   const card = cards[currentIndex];
   frontText.textContent = card.question;
-  const safeAnswer = escapeHtml(card.answer);
-  backText.innerHTML = safeAnswer
-    .replace(/\n/g, "<br>")
-    .replace(/\\n/g, "<br>")
-    .replace(/&lt;br&gt;/gi, "<br>");
+  backText.innerHTML = renderWithBreaks(card.answer);
   cardCounter.textContent = `${currentIndex + 1} of ${cards.length}`;
   prevBtn.disabled = currentIndex === 0;
   nextBtn.disabled = currentIndex === cards.length - 1;
